@@ -606,7 +606,7 @@ export default function App() {
           </button>
         </div>
         <Excalidraw
-          excalidrawAPI={setExcalidrawAPI}
+          excalidrawAPI={setExcalidrawAPI} // 1
           gridModeEnabled={gridModeEnabled}
           initialData={initialStatePromiseRef.current.promise}
           name="Custom name of drawing"
