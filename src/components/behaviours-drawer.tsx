@@ -4,6 +4,7 @@ import { produce } from 'immer';
 import { St8 } from 'use-st8';
 import { useExcalidrawAPIStore } from '../store/excadraw-api-state';
 import { getSelectedElements } from '../utils';
+import { JsonFormComponent } from './json-form';
 
 interface BehaviorsDrawerProps {
   drawerSt8: St8<boolean>;
@@ -25,6 +26,7 @@ export function BehaviorsDrawer({ drawerSt8 }: BehaviorsDrawerProps) {
           flexDirection: 'column',
         }}
       >
+        <JsonFormComponent />
         <Typography>Behaviors list</Typography>
         <kbd>
           type<kbd>submit</kbd>

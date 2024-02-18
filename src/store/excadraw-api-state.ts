@@ -9,6 +9,6 @@ export const useExcalidrawAPIStore = create<ExcalidrawAPIStore>(() => ({
   excalidrawAPI: null,
 }));
 
-export const setExcalidrawAPI = (excalidrawAPI: ExcalidrawAPIStore['excalidrawAPI']) => {
+export const setExcalidrawAPI = (excalidrawAPI: ExcalidrawImperativeAPI) => {
   useExcalidrawAPIStore.setState({ excalidrawAPI });
 };
