@@ -19,11 +19,13 @@
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.9",
     "@mui/x-date-pickers": "^6.19.4",
+    "idb-keyval": "^6.2.1",
     "immer": "^10.0.3",
     "lodash": "^4.17.21",
     "prettier": "^3.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-toastify": "^10.0.4",
     "reactflow": "^11.10.4",
     "use-st8": "^1.1.0",
     "zustand": "^4.5.0"
