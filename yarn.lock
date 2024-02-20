@@ -1695,6 +1695,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uuid@npm:^9.0.8":
+  version: 9.0.8
+  resolution: "@types/uuid@npm:9.0.8"
+  checksum: b411b93054cb1d4361919579ef3508a1f12bf15b5fdd97337d3d351bece6c921b52b6daeef89b62340fd73fd60da407878432a1af777f40648cbe53a01723489
+  languageName: node
+  linkType: hard
+
 "@typescript-eslint/eslint-plugin@npm:^6.14.0":
   version: 6.19.0
   resolution: "@typescript-eslint/eslint-plugin@npm:6.19.0"
@@ -2311,6 +2318,7 @@ __metadata:
     "@types/lodash": "npm:^4"
     "@types/react": "npm:^18.2.43"
     "@types/react-dom": "npm:^18.2.17"
+    "@types/uuid": "npm:^9.0.8"
     "@typescript-eslint/eslint-plugin": "npm:^6.14.0"
     "@typescript-eslint/parser": "npm:^6.14.0"
     "@vitejs/plugin-react": "npm:^4.2.1"
@@ -2324,11 +2332,13 @@ __metadata:
     prettier: "npm:^3.2.4"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
+    react-modal-promise: "npm:^1.0.2"
     react-toastify: "npm:^10.0.4"
     reactflow: "npm:^11.10.4"
     sass: "npm:^1.70.0"
     typescript: "npm:^5.2.2"
     use-st8: "npm:^1.1.0"
+    uuid: "npm:^9.0.1"
     vite: "npm:^5.0.8"
     zustand: "npm:^4.5.0"
   languageName: unknown
@@ -4465,6 +4475,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-modal-promise@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "react-modal-promise@npm:1.0.2"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: d6c4c8b8e1f984be1ce72a100f0d7fe34a2083f333beecf557cc75139719e5d5736125fcd4728753006472c0c13e257e38fe14d6158563d4f66c11c40191074a
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:^0.14.0":
   version: 0.14.0
   resolution: "react-refresh@npm:0.14.0"
@@ -5234,6 +5254,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0
   checksum: ac4814e5592524f242921157e791b022efe36e451fe0d4fd4d204322d5433a4fc300d63b0ade5185f8e0735ded044c70bcf6d2352db0f74d097a238cebd2da02
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 1607dd32ac7fc22f2d8f77051e6a64845c9bce5cd3dd8aa0070c074ec73e666a1f63c7b4e0f4bf2bc8b9d59dc85a15e17807446d9d2b17c8485fbc2147b27f9b
   languageName: node
   linkType: hard
 

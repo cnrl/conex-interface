@@ -25,15 +25,18 @@
     "prettier": "^3.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-modal-promise": "^1.0.2",
     "react-toastify": "^10.0.4",
     "reactflow": "^11.10.4",
     "use-st8": "^1.1.0",
+    "uuid": "^9.0.1",
     "zustand": "^4.5.0"
   },
   "devDependencies": {
     "@types/lodash": "^4",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
