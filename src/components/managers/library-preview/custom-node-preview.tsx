@@ -15,6 +15,7 @@ const onDragStart = (nodeType: PreviewNodeTypes): React.DragEventHandler<HTMLDiv
   };
 };
 
+// TODO: move coloring to theme
 export const NeuronGroupNodePreview = () => {
   return (
     <Tooltip title="Neuron group">

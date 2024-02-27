@@ -54,6 +54,7 @@ export const MainFlow = () => {
     async event => {
       event.preventDefault();
       const nodeType = event.dataTransfer.getData('application/reactflow');
+      console.log({ nodeType });
 
       // check if the dropped element is valid, or no react-flow-instance has been created
       if (typeof nodeType === 'undefined' || !nodeType || !reactFlowInstance) return;
