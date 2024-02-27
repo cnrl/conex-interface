@@ -15,6 +15,7 @@ export const LibraryItemsPreview = () => {
         bgcolor: '#f0f0f099',
         left: '50%',
         transform: 'translateX(-50%)',
+        gap: 2,
         alignItems: 'center',
         zIndex: 1,
         userSelect: 'none',

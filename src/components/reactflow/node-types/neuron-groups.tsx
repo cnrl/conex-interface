@@ -35,13 +35,7 @@ export const NeuronGroupNode = ({ data }: NeuronGroupNodeProps) => {
         >
           show state
         </button>
-        <button
-          onClick={() => {
-            console.log(store.destroy());
-          }}
-        >
-          delete scene
-        </button>
+
       </NodeToolbar>
       <Stack
         sx={{

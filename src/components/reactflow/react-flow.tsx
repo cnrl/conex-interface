@@ -18,6 +18,7 @@ import './css/reflow-reset.css';
 import './css/validation.css';
 
 import { v4 as getUniqueId } from 'uuid';
+import { modalManager } from '../managers/modal/modal';
 import { nodeTypes } from './node-types';
 
 // TODO: mini map (name, color, toggle-able)
@@ -50,12 +51,18 @@ export const MainFlow = () => {
   }, []);
 
   const onDrop = useCallback<DragEventHandler<HTMLDivElement>>(
-    event => {
+    async event => {
       event.preventDefault();
       const nodeType = event.dataTransfer.getData('application/reactflow');
 
       // check if the dropped element is valid, or no react-flow-instance has been created
       if (typeof nodeType === 'undefined' || !nodeType || !reactFlowInstance) return;
+      let nodeProps = null;
+      try {
+        nodeProps = await modalManager({ shabe: 'tavalode toe' });
+      } catch (o_O) {
+        nodeProps = null;
+      }
 
       setNodes(
         produce(draft => {
@@ -65,6 +72,7 @@ export const MainFlow = () => {
             position: reactFlowInstance.screenToFlowPosition({ x: event.clientX, y: event.clientY }),
             data: {
               label: `${nodeType} node`,
+              nodeProps,
             },
           };
 
