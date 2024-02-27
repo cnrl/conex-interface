@@ -8,7 +8,7 @@ interface NeuronGroupNodeProps {
   };
 }
 
-export const InputTagNode = ({ data }: NeuronGroupNodeProps) => {
+export const InputPortNode = ({ data }: NeuronGroupNodeProps) => {
   return (
     <>
       <Stack

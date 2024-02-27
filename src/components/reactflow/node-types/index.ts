@@ -1,10 +1,10 @@
 import { INPUT_TAG, NEURON_GROUP, OUTPUT_TAG } from '../../../constants';
-import { InputTagNode } from './input-tag';
+import { InputPortNode } from './input-port';
 import { NeuronGroupNode } from './neuron-group';
-import { OutputTagNode } from './output-tag';
+import { OutputPortNode } from './output-port';
 
 export const nodeTypes = {
   [NEURON_GROUP]: NeuronGroupNode,
-  [INPUT_TAG]: InputTagNode,
-  [OUTPUT_TAG]: OutputTagNode,
+  [INPUT_TAG]: InputPortNode,
+  [OUTPUT_TAG]: OutputPortNode,
 };
