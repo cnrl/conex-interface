@@ -1,0 +1,1076 @@
+{
+  "AELIF": {
+    "type": "neurons",
+    "parameters": {
+      "tau": {
+        "type": "float",
+        "description": "time constant of voltage decay.",
+        "default": null
+      },
+      "R": {
+        "type": "float",
+        "description": "the resistance of the membrane potential.",
+        "default": null
+      },
+      "threshold": {
+        "type": "float",
+        "description": "the threshold of neurons to initiate spike.",
+        "default": null
+      },
+      "v_reset": {
+        "type": "float",
+        "description": "immediate membrane potential after a spike.",
+        "default": null
+      },
+      "v_rest": {
+        "type": "float",
+        "description": "neuron membrane potential in absent of input.",
+        "default": null
+      },
+      "delta": {
+        "type": "float",
+        "description": "the constant defining the sharpness of exponential curve.",
+        "default": null
+      },
+      "theta_rh": {
+        "type": "float",
+        "description": "The boosting threshold.",
+        "default": null
+      },
+      "alpha": {
+        "type": "float",
+        "description": "subthreshold adaptation parameter.",
+        "default": null
+      },
+      "beta": {
+        "type": "float",
+        "description": "spike-triggered adaptation parameter.",
+        "default": null
+      },
+      "w_tau": {
+        "type": "float",
+        "description": "time constant of adaptation decay.",
+        "default": null
+      },
+      "init_v": null,
+      "init_s": null,
+      "omega": null
+    }
+  },
+  "ActivityBaseHomeostasis": {
+    "type": "neurons",
+    "parameters": {
+      "window_size": {
+        "type": "int",
+        "description": "The simulation steps to accumulate spikes.",
+        "default": null
+      },
+      "activity_rate": {
+        "type": "int",
+        "description": " The expected number of spikes in a window.",
+        "default": null
+      },
+      "updating_rate": {
+        "type": "float",
+        "description": "A scaler to change update effect with.",
+        "default": null
+      },
+      "decay_rate": {
+        "type": "float",
+        "description": "A scaler to change updating_rate after each applied homeostasis. The default is 1.0",
+        "default": 1.0
+      }
+    }
+  },
+  "AveragePool2D": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      }
+    }
+  },
+  "BaseDendriticInput": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      }
+    }
+  },
+  "Conv2dDendriticInput": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      },
+      "stride": {
+        "type": "int",
+        "description": "Stride of the convolution. The default is 1.",
+        "default": 1
+      },
+      "padding": {
+        "type": "int",
+        "description": "Padding added to both sides of the input. The default is 0.",
+        "default": 0
+      }
+    }
+  },
+  "Conv2dRSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "tau_c": {
+        "type": "float",
+        "description": "Time constant for the eligibility trace. The default is None.",
+        "default": null
+      },
+      "init_c_mode": {
+        "type": "int",
+        "description": "Initialization mode for the eligibility trace. The default is 0.",
+        "default": 0
+      },
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "Conv2dSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "CurrentNormalization": {
+    "type": "synapses",
+    "parameters": {
+      "norm": {
+        "type": "int",
+        "description": "Desired maximum of current for each neuron.",
+        "default": 1
+      }
+    }
+  },
+  "DelayInitializer": {
+    "type": "synapses",
+    "parameters": {
+      "mode": {
+        "type": "str or number",
+        "description": "string should be torch functions that fills a tensor like:",
+        "default": null
+      },
+      "offset": {
+        "type": "int",
+        "description": "delay added to the all delays.",
+        "default": 0
+      },
+      "scale": { "type": "int", "description": "scales delay.", "default": 1 },
+      "weights": {
+        "type": "tensor",
+        "description": "giving the delays directly.",
+        "default": null
+      },
+      "destination": {
+        "type": "boolean",
+        "description": "True for destination neurons. defaults to False.",
+        "default": false
+      },
+      "delays": null
+    }
+  },
+  "Dopamine": {
+    "type": "network",
+    "parameters": {
+      "tau_dopamine": {
+        "type": "float",
+        "description": "Dopamine decay time constant.",
+        "default": 0.0
+      },
+      "initial_dopamine_concentration": {
+        "type": "float, optional",
+        "description": "Initial dopamine concentration",
+        "default": null
+      }
+    }
+  },
+  "ELIF": {
+    "type": "neurons",
+    "parameters": {
+      "tau": {
+        "type": "float",
+        "description": "time constant of voltage decay.",
+        "default": null
+      },
+      "R": {
+        "type": "float",
+        "description": "the resistance of the membrane potential.",
+        "default": null
+      },
+      "threshold": {
+        "type": "float",
+        "description": "the threshold of neurons to initiate spike.",
+        "default": null
+      },
+      "v_reset": {
+        "type": "float",
+        "description": "immediate membrane potential after a spike.",
+        "default": null
+      },
+      "v_rest": {
+        "type": "float",
+        "description": "neuron membrane potential in absent of input.",
+        "default": null
+      },
+      "delta": {
+        "type": "float",
+        "description": "the constant defining the sharpness of exponential curve.",
+        "default": null
+      },
+      "theta_rh": {
+        "type": "float",
+        "description": "The boosting threshold. (rheobase)",
+        "default": null
+      },
+      "init_v": null,
+      "init_s": null
+    }
+  },
+  "Fire": { "type": "neurons", "parameters": {} },
+  "InherentNoise": {
+    "type": "neurons",
+    "parameters": {
+      "mode": {
+        "type": "str",
+        "description": "Mode to be used in initialize the tensor. Accepts similar values to Pymonntorch's ",
+        "default": "rand"
+      },
+      "scale": {
+        "type": "float",
+        "description": "Scale factor to multiply to the tensor. Default is 1.0.",
+        "default": 1
+      },
+      "offset": {
+        "type": "function",
+        "description": "An offset value to be added to the tensor. Default is 0.0.",
+        "default": 0
+      }
+    }
+  },
+  "KWTA": {
+    "type": "neurons",
+    "parameters": {
+      "k": {
+        "type": "int",
+        "description": "number of winners.",
+        "default": null
+      },
+      "dimension": {
+        "type": "int, optional",
+        "description": "K-WTA on specific dimension. defaults to None.",
+        "default": null
+      }
+    }
+  },
+  "LIF": {
+    "type": "neurons",
+    "parameters": {
+      "tau": {
+        "type": "float",
+        "description": "time constant of voltage decay.",
+        "default": null
+      },
+      "R": {
+        "type": "float",
+        "description": "the resistance of the membrane potential.",
+        "default": null
+      },
+      "threshold": {
+        "type": "float",
+        "description": "the threshold of neurons to initiate spike.",
+        "default": null
+      },
+      "v_reset": {
+        "type": "float",
+        "description": "immediate membrane potential after a spike.",
+        "default": null
+      },
+      "v_rest": {
+        "type": "float",
+        "description": "neuron membrane potential in absent of input.",
+        "default": null
+      },
+      "init_v": null,
+      "init_s": null
+    }
+  },
+  "LateralDendriticInput": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      },
+      "inhibitory": {
+        "type": "bool or None",
+        "description": "If None, connection type respect the NeuronGroup type. if True, the effect in inhibitory and False is excitatory.",
+        "default": null
+      }
+    }
+  },
+  "Local2dDendriticInput": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      },
+      "stride": {
+        "type": "int",
+        "description": "Stride of the convolution. The default is 1.",
+        "default": 1
+      },
+      "padding": {
+        "type": "int",
+        "description": "Padding added to both sides of the input. The default is 0.",
+        "default": 0
+      }
+    }
+  },
+  "Local2dRSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "tau_c": {
+        "type": "float",
+        "description": "Time constant for the eligibility trace. The default is None.",
+        "default": null
+      },
+      "init_c_mode": {
+        "type": "int",
+        "description": "Initialization mode for the eligibility trace. The default is 0.",
+        "default": 0
+      },
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "Local2dSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "LocationSetter": { "type": "neurons", "parameters": {} },
+  "NeuronAxon": {
+    "type": "neurons",
+    "parameters": {
+      "max_delay": {
+        "type": "int",
+        "description": "Maximum delay of all dendrites connected to the neurons. This value determines the delay buffer size.",
+        "default": 1
+      },
+      "proximal_min_delay": {
+        "type": "int",
+        "description": "Minimum delay of proximal dendrites. The default is 0.",
+        "default": 0
+      },
+      "distal_min_delay": {
+        "type": "int",
+        "description": "Minimum delay of distal dendrites. The default is 0.",
+        "default": 0
+      },
+      "apical_min_delay": {
+        "type": "int",
+        "description": "Minimum delay of apical dendrites. The default is 0.",
+        "default": 0
+      },
+      "have_trace": {
+        "type": "boolean",
+        "description": "whether to calculate trace or not. None checks if trace is available.",
+        "default": null
+      }
+    }
+  },
+  "One2OneDendriticInput": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      }
+    }
+  },
+  "One2OneRSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "tau_c": {
+        "type": "float",
+        "description": "Time constant for the eligibility trace. The default is None.",
+        "default": null
+      },
+      "init_c_mode": {
+        "type": "int",
+        "description": "Initialization mode for the eligibility trace. The default is 0.",
+        "default": 0
+      },
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "One2OneSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "One2OneiSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "lr": {
+        "type": "float",
+        "description": "Learning rate. The Default is 1e-5.",
+        "default": 1e-5
+      },
+      "rho": {
+        "type": "float",
+        "description": "Constant that determines the fire rate of target neurons.",
+        "default": null
+      },
+      "alpha": {
+        "type": "float",
+        "description": "Manual constant for target trace, which replace rho value.",
+        "default": null
+      },
+      "is_inhibitory": null
+    }
+  },
+  "Payoff": {
+    "type": "network",
+    "parameters": {
+      "initial_payoff": {
+        "type": "float",
+        "description": "Initial reward/punishment value. Default is 0.0.",
+        "default": 0.0
+      }
+    }
+  },
+  "SensorySetter": { "type": "neurons", "parameters": {} },
+  "SimpleDendriteComputation": {
+    "type": "neurons",
+    "parameters": {
+      "apical_provocativeness": {
+        "type": "float",
+        "description": "The strength of the apical dendrites. The default is None.",
+        "default": null
+      },
+      "distal_provocativeness": {
+        "type": "float",
+        "description": "The strength of the distal dendrites. The default is None.",
+        "default": null
+      },
+      "I_tau": {
+        "type": "float",
+        "description": "Decaying factor to current. If None, at each step, current falls to zero.",
+        "default": null
+      }
+    }
+  },
+  "SimpleDendriteStructure": {
+    "type": "neurons",
+    "parameters": {
+      "proximal_max_delay": {
+        "type": "int",
+        "description": "Maximum delay of proximal dendrites. The default is 1. Set this to 0 to discard Proximal dendrite.",
+        "default": null
+      },
+      "distal_max_delay": {
+        "type": "int",
+        "description": "Maximum delay of distal dendrites. The default is 1. Set this to 0 to discard Distal dendrite.",
+        "default": null
+      },
+      "apical_max_delay": {
+        "type": "int",
+        "description": "Maximum delay of distal dendrites. The default is ",
+        "default": null
+      },
+      "proximal_min_delay": {
+        "type": "int",
+        "description": "Minimum delay of proximal dendrites. The default is 0.",
+        "default": 0
+      },
+      "distal_min_delay": {
+        "type": "int",
+        "description": "Minimum delay of distal dendrites. The default is 0.",
+        "default": 0
+      },
+      "apical_min_delay": {
+        "type": "int",
+        "description": "Minimum delay of apical dendrites. The default is ",
+        "default": null
+      },
+      "Proximal_max_delay": null,
+      "Distal_max_delay": null,
+      "Apical_max_delay": null
+    }
+  },
+  "SimpleDendriticInput": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      }
+    }
+  },
+  "SimpleRSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "tau_c": {
+        "type": "float",
+        "description": "Time constant for the eligibility trace. The default is None.",
+        "default": null
+      },
+      "init_c_mode": {
+        "type": "int",
+        "description": "Initialization mode for the eligibility trace. The default is 0.",
+        "default": 0
+      },
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "SimpleSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "SimpleiSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "lr": {
+        "type": "float",
+        "description": "Learning rate. The Default is 1e-5.",
+        "default": 1e-5
+      },
+      "rho": {
+        "type": "float",
+        "description": "Constant that determines the fire rate of target neurons.",
+        "default": null
+      },
+      "alpha": {
+        "type": "float",
+        "description": "Manual constant for target trace, which replace rho value.",
+        "default": null
+      },
+      "is_inhibitory": null
+    }
+  },
+  "SparseDendriticInput": {
+    "type": "synapses",
+    "parameters": {
+      "current_coef": {
+        "type": "float",
+        "description": "Scalar coefficient that multiplies weights.",
+        "default": 1
+      }
+    }
+  },
+  "SparseRSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "tau_c": {
+        "type": "float",
+        "description": "Time constant for the eligibility trace. The default is None.",
+        "default": null
+      },
+      "init_c_mode": {
+        "type": "int",
+        "description": "Initialization mode for the eligibility trace. The default is 0.",
+        "default": 0
+      },
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "SparseSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "w_min": {
+        "type": "float",
+        "description": "Minimum for weights. The default is 0.0.",
+        "default": 0.0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum for weights. The default is 1.0.",
+        "default": 1.0
+      },
+      "a_plus": {
+        "type": "float",
+        "description": "Coefficient for the positive weight change. The default is None.",
+        "default": null
+      },
+      "a_minus": {
+        "type": "float",
+        "description": "Coefficient for the negative weight change. The default is None.",
+        "default": null
+      },
+      "positive_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for positive learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      },
+      "negative_bound": {
+        "type": "str or function",
+        "description": "Bounding mechanism for negative learning. Accepting \"no_bound\", \"hard_bound\" and \"soft_bound\". The default is \"no_bound\". \"weights\", \"w_min\" and \"w_max\" pass as arguments for a bounding function.",
+        "default": null
+      }
+    }
+  },
+  "SparseiSTDP": {
+    "type": "synapses",
+    "parameters": {
+      "lr": {
+        "type": "float",
+        "description": "Learning rate. The Default is 1e-5.",
+        "default": 1e-5
+      },
+      "rho": {
+        "type": "float",
+        "description": "Constant that determines the fire rate of target neurons.",
+        "default": null
+      },
+      "alpha": {
+        "type": "float",
+        "description": "Manual constant for target trace, which replace rho value.",
+        "default": null
+      },
+      "is_inhibitory": null
+    }
+  },
+  "SpikeNdDataset": {
+    "type": "layer",
+    "parameters": {
+      "dataloader": {
+        "type": "Dataloader",
+        "description": "A pytorch dataloader kind returning up to a triole of (sensory, location, label).",
+        "default": null
+      },
+      "ndim_sensory": {
+        "type": "int",
+        "description": "Sensory's number of dimension refering to a single instance.",
+        "default": 2
+      },
+      "ndim_location": {
+        "type": "int",
+        "description": "Location's number of dimension refering to a single instance.",
+        "default": 2
+      },
+      "have_location": {
+        "type": "bool",
+        "description": "Whether dataloader returns location input.",
+        "default": false
+      },
+      "have_sensory": {
+        "type": "bool",
+        "description": "Whether dataloader returns sensory input.",
+        "default": true
+      },
+      "have_label": {
+        "type": "bool",
+        "description": "Whether dataloader returns label of input.",
+        "default": true
+      },
+      "silent_interval": {
+        "type": "int",
+        "description": "The interval of silent activity between two different input.",
+        "default": 0
+      },
+      "instance_duration": {
+        "type": "int",
+        "description": "The duration of each instance of input with same target value.",
+        "default": null
+      },
+      "loop": {
+        "type": "bool",
+        "description": "If True, dataloader repeats.",
+        "default": true
+      }
+    }
+  },
+  "SpikeTrace": {
+    "type": "neurons",
+    "parameters": {
+      "tau_s": {
+        "type": "float",
+        "description": "decay term for spike trace. The default is None.",
+        "default": null
+      }
+    }
+  },
+  "SynapseInit": { "type": "synapses", "parameters": {} },
+  "TimeResolution": {
+    "type": "network",
+    "parameters": {
+      "dt": {
+        "type": "float",
+        "description": "Initial iteration time resolution. Default is 1",
+        "default": 1
+      }
+    }
+  },
+  "VoltageBaseHomeostasis": {
+    "type": "neurons",
+    "parameters": {
+      "target_voltage": {
+        "type": "float",
+        "description": "The expected voltage of neuron. Defaults to None.",
+        "default": null
+      },
+      "max_ta": {
+        "type": "float",
+        "description": "The desired maximum voltage for a neuron. If not provided, the value of target_voltage is used.",
+        "default": null
+      },
+      "min_ta": {
+        "type": "float",
+        "description": "The desired minimum voltage for a neuron. If not provided, the value of target_voltage is used.",
+        "default": null
+      },
+      "eta_ip": {
+        "type": "flaot",
+        "description": "The updating speed of the homeostasis process. The default is 0.001.",
+        "default": 0.001
+      }
+    }
+  },
+  "WeightClip": {
+    "type": "synapses",
+    "parameters": {
+      "w_min": {
+        "type": "float",
+        "description": "Minimum weight constraint.",
+        "default": 0
+      },
+      "w_max": {
+        "type": "float",
+        "description": "Maximum weight constraint.",
+        "default": 1
+      }
+    }
+  },
+  "WeightInitializer": {
+    "type": "synapses",
+    "parameters": {
+      "mode": {
+        "type": "str or number",
+        "description": "string should be torch functions that fills a tensor like:",
+        "default": null
+      },
+      "scale": {
+        "type": "float",
+        "description": "Scaling factor to apply on the weight.",
+        "default": 1
+      },
+      "offset": {
+        "type": "float",
+        "description": "An offset to add to the weight.",
+        "default": 0
+      },
+      "function": {
+        "type": "callable",
+        "description": "A function to apply on weight.",
+        "default": null
+      },
+      "density": {
+        "type": "flaot",
+        "description": "The sparsity of weights. default is one.",
+        "default": 1
+      },
+      "true_sparsity": {
+        "type": "bool",
+        "description": "If false, weights are created but have zero value. Defaults to True.",
+        "default": true
+      },
+      "weights": {
+        "type": "tensor",
+        "description": "Optional parameter to specify the weights matrix directly.",
+        "default": null
+      },
+      "weight_shape": {
+        "type": "tuple",
+        "description": "Optional parameter to specify the shape of the weights tensor.",
+        "default": null
+      },
+      "kernel_shape": {
+        "type": "tuple",
+        "description": "Optional parameter to specify the shape of the kernel.",
+        "default": null
+      }
+    }
+  },
+  "WeightNormalization": {
+    "type": "synapses",
+    "parameters": {
+      "norm": {
+        "type": "int",
+        "description": "Desired sum of weights for each neuron.",
+        "default": 1
+      }
+    }
+  }
+}
