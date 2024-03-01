@@ -67,7 +67,6 @@
 //               }),
 //             );
 
-//             console.log({ connections });
 //           }}
 //         >
 //           <Typography>Connect Synapse groups</Typography>
@@ -78,3 +77,4 @@
 // }
 
 export {};
+

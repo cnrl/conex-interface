@@ -6,7 +6,6 @@ import { INPUT_TAG, NEURON_GROUP, OUTPUT_TAG } from '../../../constants';
 
 const onDragStart = (nodeType: PreviewNodeTypes): React.DragEventHandler<HTMLDivElement> => {
   return event => {
-    console.log('onDragStart.event', event);
     event.dataTransfer.setData('application/reactflow', nodeType);
     event.dataTransfer.effectAllowed = 'move';
     // const img = new Image();
@@ -102,7 +101,7 @@ const INITIAL_LIBRARY_COMPONENTS = [
   },
 ];
 
-type PreviewNodeTypes = 'input' | typeof NEURON_GROUP | typeof INPUT_TAG | typeof OUTPUT_TAG;
+export type PreviewNodeTypes = 'input' | typeof NEURON_GROUP | typeof INPUT_TAG | typeof OUTPUT_TAG;
 export const PreviewNodePool = () => {
   return (
     <>

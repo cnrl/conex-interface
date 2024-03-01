@@ -1,14 +1,12 @@
 import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
 import { Stack, SvgIcon } from '@mui/material';
-import { Handle, Position } from 'reactflow';
+import { Handle, NodeProps, Position } from 'reactflow';
 
-interface NeuronGroupNodeProps {
-  data: {
-    label: string;
-  };
-}
+type InputPortNodeData = {
+  label: string;
+};
 
-export const InputPortNode = ({ data }: NeuronGroupNodeProps) => {
+export const InputPortNode = ({ data }: NodeProps<InputPortNodeData>) => {
   return (
     <>
       <Stack

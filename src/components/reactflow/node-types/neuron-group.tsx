@@ -1,14 +1,14 @@
 import { Stack } from '@mui/material';
 import { useMemo } from 'react';
-import { Handle, NodeToolbar, Position, useStoreApi } from 'reactflow';
+import { Handle, Node, NodeProps, NodeToolbar, Position, useStoreApi } from 'reactflow';
 
-interface NeuronGroupNodeProps {
-  data: {
-    label: string;
-  };
-}
+type NeuronGroupNodeData = {
+  label: string;
+};
 
-export const NeuronGroupNode = ({ data }: NeuronGroupNodeProps) => {
+export type TNeuronGroupNode = Node<NeuronGroupNodeData>;
+
+export const NeuronGroupNode = ({ data }: NodeProps<NeuronGroupNodeData>) => {
   // TODO: increase by 10
   // TODO: update relative height of the box to its node indexes
   // TODO: distribute the heights to the nodes sources
@@ -16,6 +16,7 @@ export const NeuronGroupNode = ({ data }: NeuronGroupNodeProps) => {
   // TODO: get size of the neuron group from the creation
   // TODO: edit is prefilled modal whit delete and place methods
   const store = useStoreApi();
+  console.log(data.label);
 
   const styles = useMemo(() => {
     return {
@@ -35,7 +36,6 @@ export const NeuronGroupNode = ({ data }: NeuronGroupNodeProps) => {
         >
           show state
         </button>
-
       </NodeToolbar>
       <Stack
         sx={{

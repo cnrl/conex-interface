@@ -21,8 +21,7 @@ export function JsonFormComponent() {
         renderers={materialRenderers}
         schema={schema}
         uischema={uischema}
-        onChange={({ data, errors }) => {
-          console.log({ data, errors });
+        onChange={({ data }) => {
           setData(data);
         }}
       />

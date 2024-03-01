@@ -18,7 +18,9 @@ import './css/reflow-reset.css';
 import './css/validation.css';
 
 import { v4 as getUniqueId } from 'uuid';
-import { modalManager } from '../managers/modal/modal';
+import { HASH_SLICE } from '../../constants/configs';
+import { setPropertyDrawerEdgeId, setPropertyDrawerNodeId } from '../../store/property-drawer-store';
+import { PreviewNodeTypes } from '../managers/library-preview/custom-node-preview';
 import { nodeTypes } from './node-types';
 
 // TODO: mini map (name, color, toggle-able)
@@ -53,27 +55,27 @@ export const MainFlow = () => {
   const onDrop = useCallback<DragEventHandler<HTMLDivElement>>(
     async event => {
       event.preventDefault();
-      const nodeType = event.dataTransfer.getData('application/reactflow');
-      console.log({ nodeType });
+      const nodeType = event.dataTransfer.getData('application/reactflow') as PreviewNodeTypes;
 
       // check if the dropped element is valid, or no react-flow-instance has been created
       if (typeof nodeType === 'undefined' || !nodeType || !reactFlowInstance) return;
-      let nodeProps = null;
-      try {
-        nodeProps = await modalManager({ shabe: 'tavalode toe' });
-      } catch (o_O) {
-        nodeProps = null;
-      }
+      // let nodeProps = null;
+      // try {
+      //   nodeProps = await modalManager({ shabe: 'tavalode toe' });
+      // } catch (o_O) {
+      //   nodeProps = null;
+      // }
 
+      const nodeId = getUniqueId();
       setNodes(
         produce(draft => {
           const newNode = {
-            id: getUniqueId(),
+            id: nodeId,
             type: nodeType,
             position: reactFlowInstance.screenToFlowPosition({ x: event.clientX, y: event.clientY }),
             data: {
-              label: `${nodeType} node`,
-              nodeProps,
+              label: `${nodeType}:${nodeId.slice(0, HASH_SLICE)}`,
+              // nodeProps,
             },
           };
 
@@ -98,8 +100,10 @@ export const MainFlow = () => {
         onConnect={onConnect}
         onDragOver={onDragOver}
         onDrop={onDrop}
+        onEdgeClick={(_event, edge) => setPropertyDrawerEdgeId(edge.id)}
         onEdgesChange={onEdgesChange}
         onInit={setReactFlowInstance}
+        onNodeClick={(_event, node) => setPropertyDrawerNodeId(node.id)}
         onNodesChange={onNodesChange}
       >
         <MiniMap pannable zoomable style={minimapStyle} />

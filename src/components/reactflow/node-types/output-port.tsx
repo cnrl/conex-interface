@@ -1,14 +1,12 @@
 import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
 import { Stack, SvgIcon } from '@mui/material';
-import { Handle, Position } from 'reactflow';
+import { Handle, NodeProps, Position } from 'reactflow';
 
-interface NeuronGroupNodeProps {
-  data: {
-    label: string;
-  };
-}
+type OutputPortNodeData = {
+  label: string;
+};
 
-export const OutputPortNode = ({ data }: NeuronGroupNodeProps) => {
+export const OutputPortNode = ({ data }: NodeProps<OutputPortNodeData>) => {
   return (
     <>
       <Stack
