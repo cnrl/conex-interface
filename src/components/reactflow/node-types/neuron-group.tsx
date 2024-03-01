@@ -16,7 +16,6 @@ export const NeuronGroupNode = ({ data }: NodeProps<NeuronGroupNodeData>) => {
   // TODO: get size of the neuron group from the creation
   // TODO: edit is prefilled modal whit delete and place methods
   const store = useStoreApi();
-  console.log(data.label);
 
   const styles = useMemo(() => {
     return {

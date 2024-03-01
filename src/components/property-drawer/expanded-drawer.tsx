@@ -113,10 +113,7 @@ export const ExpandedPropertyDrawer = () => {
                   ?.filter(({ type }) => type === (nodeId ? 'neurons' : edgeId ? 'synapses' : null))
                   .map(beh => beh.key) ?? []
               }
-              onChange={(_event, options, r, d) => {
-                console.log(options, r, d);
-                return setOptionsValue(options);
-              }}
+              onChange={(_event, options) => void setOptionsValue(options)}
               value={optionsValue}
               disableCloseOnSelect
               renderOption={(props, option, { selected }) => (
@@ -148,12 +145,17 @@ export const ExpandedPropertyDrawer = () => {
                 produce(draft => {
                   const node = draft.find(({ id }) => id === nodeId);
                   if (!node) return;
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  // @ts-ignore
-                  node.data.label += '⭐️';
-                  node.data.something = 'new-thing';
+
+                  const nodeBehaviors = Object.fromEntries(optionsValue.map(key => [key, { key }]));
+
+                  // Todo: get name from user (always)
+                  // Todo: add color section so user can change ui (color picker)
+                  // node.data.label = '⭐️';
+                  node.data.nodeBehaviors = nodeBehaviors;
                 }),
               );
+              console.log('update node', nodeId);
+              console.log(currentReactFlow.getNodes().find(({ id }) => id === nodeId));
             }
           }}
         >
