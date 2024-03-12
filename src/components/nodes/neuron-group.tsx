@@ -1,14 +1,41 @@
-import { Stack } from '@mui/material';
+import GrainRoundedIcon from '@mui/icons-material/GrainRounded';
+import { Stack, Tooltip } from '@mui/material';
 import { useMemo } from 'react';
-import { Handle, Node, NodeProps, NodeToolbar, Position, useStoreApi } from 'reactflow';
+import { Handle, NodeProps, NodeToolbar, Position, useStoreApi } from 'reactflow';
+import { onDragStart } from './helpers/bus-dispatcher';
+import { NodeBaseTypeData, PreviewNodeTypes } from './types';
 
-type NeuronGroupNodeData = {
-  label: string;
+export const NAME = 'ng';
+export const COLOR = '#ff0072';
+
+// TODO: move coloring to theme
+export const Preview = () => {
+  return (
+    <Tooltip title="Neuron group">
+      <Stack
+        draggable
+        sx={{
+          display: 'inline-flex',
+          borderRadius: '50%',
+          width: '3rem',
+          height: '3rem',
+          background: COLOR,
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fff',
+          cursor: 'grab',
+        }}
+        onDragStart={onDragStart<PreviewNodeTypes>(NAME)}
+      >
+        <GrainRoundedIcon />
+      </Stack>
+    </Tooltip>
+  );
 };
 
-export type TNeuronGroupNode = Node<NeuronGroupNodeData>;
+export type CustomNodeProps = NodeProps<NodeBaseTypeData>;
 
-export const NeuronGroupNode = ({ data }: NodeProps<NeuronGroupNodeData>) => {
+export const CustomNode = ({ data }: CustomNodeProps) => {
   // TODO: increase by 10
   // TODO: update relative height of the box to its node indexes
   // TODO: distribute the heights to the nodes sources
@@ -42,7 +69,7 @@ export const NeuronGroupNode = ({ data }: NodeProps<NeuronGroupNodeData>) => {
           borderRadius: 2,
           width: '4em',
           height: '4em',
-          backgroundColor: 'crimson',
+          backgroundColor: COLOR,
           justifyContent: 'center',
           alignItems: 'center',
           fontSize: '0.6rem',

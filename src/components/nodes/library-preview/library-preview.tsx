@@ -1,5 +1,5 @@
 import { Stack } from '@mui/material';
-import { PreviewNodePool } from './custom-node-preview';
+import { INITIAL_LIBRARY_COMPONENTS } from './constants';
 
 export const LibraryItemsPreview = () => {
   return (
@@ -24,4 +24,8 @@ export const LibraryItemsPreview = () => {
       <PreviewNodePool />
     </Stack>
   );
+};
+
+export const PreviewNodePool = () => {
+  return INITIAL_LIBRARY_COMPONENTS.map(library => <library.component key={library.nodeType} />);
 };

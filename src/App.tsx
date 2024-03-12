@@ -1,6 +1,6 @@
 import { Paper } from '@mui/material';
 import { Container as ModalContainer } from 'react-modal-promise';
-import { LibraryPreviewManager } from './components/managers/library-preview';
+import { LibraryPreviewManager } from './components/nodes/library-preview';
 import { PropertyDrawer } from './components/property-drawer';
 import { MainFlow } from './components/reactflow';
 

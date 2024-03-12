@@ -20,8 +20,7 @@ import './css/validation.css';
 import { v4 as getUniqueId } from 'uuid';
 import { HASH_SLICE } from '../../constants/configs';
 import { setPropertyDrawerEdgeId, setPropertyDrawerNodeId } from '../../store/property-drawer-store';
-import { PreviewNodeTypes } from '../managers/library-preview/custom-node-preview';
-import { nodeTypes } from './node-types';
+import { PreviewNodeTypes, nodeTypes } from '../nodes';
 
 // TODO: mini map (name, color, toggle-able)
 const minimapStyle = { height: 120 };
@@ -75,6 +74,9 @@ export const MainFlow = () => {
             position: reactFlowInstance.screenToFlowPosition({ x: event.clientX, y: event.clientY }),
             data: {
               label: `${nodeType}:${nodeId.slice(0, HASH_SLICE)}`,
+              ui: {
+                bgcolor: 'crimson',
+              },
               // nodeProps,
             },
           };

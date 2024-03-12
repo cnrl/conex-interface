@@ -41,6 +41,8 @@ export const ExpandedPropertyDrawer = () => {
   // todo: reset the value on api value change
   const [optionsValue, setOptionsValue] = useState<string[]>([]);
 
+  // todo: add Resetting mechanism with save alert
+
   return (
     <Drawer
       anchor="right"

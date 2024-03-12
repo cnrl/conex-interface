@@ -1,1 +1,1 @@
-export * from './naming-convention';
+export {};

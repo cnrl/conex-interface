@@ -20,6 +20,7 @@ export const setPropertyDrawerNodeId = (nodeId?: string) => {
   usePropertyDrawerElementStore.setState({ nodeId, edgeId: undefined });
 };
 export const setPropertyDrawerEdgeId = (edgeId?: string) => {
+  // TODO: check is dirty and alert for continuing action process
   usePropertyDrawerElementStore.setState({ edgeId, nodeId: undefined });
 };
 
