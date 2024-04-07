@@ -25,10 +25,19 @@ const uiSchema: UiSchema = {
   },
 };
 
-const log = (tipical: string) => console.log.bind(console, tipical);
+const log = (prefix: string) => console.log.bind(console, prefix);
 
 // todo: resolve type issue
-function ModalManager({ isOpen, onResolve, onReject, ...props }) {
+function ModalManager({
+  isOpen,
+  onResolve,
+  onReject,
+  ..._props
+}: {
+  isOpen: boolean;
+  onResolve: (data: unknown) => void;
+  onReject: () => void;
+}) {
   return (
     <Modal open={isOpen} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClose={onReject}>
       <Paper sx={{ width: 450, height: '60vh', py: 1.5, px: 2 }}>

@@ -6,7 +6,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:react/recommended',
-    '@tanstack/eslint-plugin-query',
+    // '@tanstack/eslint-plugin-query',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -21,6 +21,7 @@ module.exports = {
     'no-dupe-keys': ['error'],
     'react/react-in-jsx-scope': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+
     'react/jsx-sort-props': [
       'error',
       {

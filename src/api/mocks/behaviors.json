@@ -326,7 +326,8 @@
         "default": null
       },
       "dimension": {
-        "type": "int, optional",
+        "type": "int",
+        "optional": true,
         "description": "K-WTA on specific dimension. defaults to None.",
         "default": null
       }

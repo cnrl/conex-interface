@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { Draft, produce } from 'immer';
+import { SingleField } from '../components/form-builder';
 import behaviors from './mocks/behaviors.json';
 import { UseQueryOptions } from './types';
 
 export type Behaviors = {
   // todo: what to do with network
   type: 'neurons' | 'synapses' | 'network';
-  parameters: Record<string, { type: 'float' | 'int' | 'str'; description: string; default: unknown }>;
+  parameters: Record<string, SingleField>;
   key: string;
 };
 

@@ -17,11 +17,12 @@ export const usePropertyDrawerElementStore = create<PropertyDrawerElementStore>(
 }));
 
 export const setPropertyDrawerNodeId = (nodeId?: string) => {
-  usePropertyDrawerElementStore.setState({ nodeId, edgeId: undefined });
+  usePropertyDrawerElementStore.setState(state => (state.nodeId !== nodeId ? { nodeId, edgeId: undefined } : state));
 };
+
 export const setPropertyDrawerEdgeId = (edgeId?: string) => {
   // TODO: check is dirty and alert for continuing action process
-  usePropertyDrawerElementStore.setState({ edgeId, nodeId: undefined });
+  usePropertyDrawerElementStore.setState(state => (state.edgeId !== edgeId ? { edgeId, nodeId: undefined } : state));
 };
 
 export const clearPropertyDrawerStore = () => {

@@ -7,9 +7,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Drawer from '@mui/material/Drawer';
-import { produce } from 'immer';
 import { useReactFlow } from 'reactflow';
-import { useBehaviors } from '../../api/conex';
+import { Behaviors, useBehaviors } from '../../api/conex';
 import { HASH_SLICE } from '../../constants/configs';
 import {
   clearPropertyDrawerStore,
@@ -23,7 +22,10 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
+import { produce } from 'immer';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { FormBuilder } from '../form-builder';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
@@ -33,16 +35,16 @@ export const ExpandedPropertyDrawer = () => {
   const { nodeId, edgeId } = usePropertyDrawerElementStore();
   const currentReactFlow = useReactFlow();
 
-  const { data: behaviors } = useBehaviors();
-
   const hasSelectedElement = !!(nodeId || edgeId);
+
+  const { data: behaviors } = useBehaviors({ enabled: hasSelectedElement });
 
   // todo: get default value from the api
   // todo: reset the value on api value change
-  const [optionsValue, setOptionsValue] = useState<string[]>([]);
+  const [optionsValue, setOptionsValue] = useState<Behaviors[]>([]);
+  const { control, handleSubmit, formState } = useForm({ mode: 'onSubmit' });
 
   // todo: add Resetting mechanism with save alert
-
   return (
     <Drawer
       anchor="right"
@@ -58,7 +60,36 @@ export const ExpandedPropertyDrawer = () => {
         },
       }}
     >
-      <Stack sx={{ height: 1, gap: 1 }}>
+      <Stack
+        component="form"
+        sx={{ height: 1, gap: 1 }}
+        onSubmit={handleSubmit((data, event) => {
+          event?.preventDefault();
+          if (!hasSelectedElement) return;
+
+          currentReactFlow.setNodes(
+            produce(draft => {
+              const node = draft.find(({ id }) => id === nodeId);
+              if (!node) return;
+
+              // Todo: get name from user (always)
+              // Todo: add color section so user can change ui (color picker)
+              // node.data.label = '⭐️';
+              console.log({ node });
+              node.data.nodeBehaviors = data;
+              return draft;
+            }),
+          );
+          console.log('update node', nodeId);
+          console.log(currentReactFlow.getNodes().find(({ id }) => id === nodeId));
+          console.log({ formState });
+
+          // clear
+          setOptionsValue([]);
+          clearPropertyDrawerStore();
+          setPropertyDrawerOpenState(false);
+        })}
+      >
         <Stack sx={{ flexDirection: 'row', alignItems: 'center' }}>
           {hasSelectedElement && (
             <IconButton disableRipple onClick={clearPropertyDrawerStore}>
@@ -108,59 +139,40 @@ export const ExpandedPropertyDrawer = () => {
 
           {hasSelectedElement && (
             <Autocomplete
-              multiple
-              size="small"
-              options={
-                behaviors
-                  ?.filter(({ type }) => type === (nodeId ? 'neurons' : edgeId ? 'synapses' : null))
-                  .map(beh => beh.key) ?? []
-              }
-              onChange={(_event, options) => void setOptionsValue(options)}
-              value={optionsValue}
               disableCloseOnSelect
+              multiple
+              getOptionLabel={option => option.key}
+              isOptionEqualToValue={(option, value) => option.key === value.key}
+              renderInput={params => <TextField {...params} label="Behaviors" placeholder="Behaviors" />}
+              size="small"
+              value={optionsValue}
+              options={
+                behaviors?.filter(({ type }) => type === (nodeId ? 'neurons' : edgeId ? 'synapses' : null)) ?? []
+              }
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
-                  <Checkbox icon={icon} checkedIcon={checkedIcon} style={{ marginRight: 8 }} checked={selected} />
-                  <Typography variant="caption">{option}</Typography>
+                  <Checkbox checked={selected} checkedIcon={checkedIcon} icon={icon} style={{ marginRight: 8 }} />
+                  <Typography variant="caption">{option.key}</Typography>
                 </li>
               )}
-              renderInput={params => <TextField {...params} label="Behaviors" placeholder="Behaviors" />}
+              onChange={(_event, options) => void setOptionsValue(options)}
             />
           )}
 
           {hasSelectedElement &&
             optionsValue?.map(option => (
-              <Accordion key={option} disableGutters>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1-content" id="panel1-header">
-                  <Typography variant="caption">🟥 {option}</Typography>
+              <Accordion key={option.key} disableGutters>
+                <AccordionSummary aria-controls="panel1-content" expandIcon={<ExpandMoreIcon />} id="panel1-header">
+                  <Typography variant="caption">🟥 {option.key}</Typography>
                 </AccordionSummary>
-                <AccordionDetails>JsonForm for {option}</AccordionDetails>
+                <AccordionDetails>
+                  <FormBuilder control={control} fields={option.parameters} name={option.key} />
+                </AccordionDetails>
               </Accordion>
             ))}
         </Stack>
 
-        <Button
-          variant="contained"
-          onClick={() => {
-            if (nodeId) {
-              currentReactFlow.setNodes(
-                produce(draft => {
-                  const node = draft.find(({ id }) => id === nodeId);
-                  if (!node) return;
-
-                  const nodeBehaviors = Object.fromEntries(optionsValue.map(key => [key, { key }]));
-
-                  // Todo: get name from user (always)
-                  // Todo: add color section so user can change ui (color picker)
-                  // node.data.label = '⭐️';
-                  node.data.nodeBehaviors = nodeBehaviors;
-                }),
-              );
-              console.log('update node', nodeId);
-              console.log(currentReactFlow.getNodes().find(({ id }) => id === nodeId));
-            }
-          }}
-        >
+        <Button type="submit" variant="contained">
           Update
         </Button>
       </Stack>
