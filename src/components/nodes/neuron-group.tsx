@@ -57,7 +57,7 @@ export const CustomNode = ({ data }: CustomNodeProps) => {
       <NodeToolbar isVisible={true} position={Position.Top}>
         <button
           onClick={() => {
-            console.log(store.getState());
+            console.log(store.getState().getNodes());
           }}
         >
           show state

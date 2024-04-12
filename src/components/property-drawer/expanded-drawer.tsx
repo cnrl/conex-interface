@@ -23,7 +23,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import { produce } from 'immer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormBuilder } from '../form-builder';
 
@@ -41,8 +41,31 @@ export const ExpandedPropertyDrawer = () => {
 
   // todo: get default value from the api
   // todo: reset the value on api value change
+  const element = !hasSelectedElement
+    ? null
+    : (nodeId ? currentReactFlow.getNodes : currentReactFlow.getEdges)().find(({ id }) => id === nodeId);
+
   const [optionsValue, setOptionsValue] = useState<Behaviors[]>([]);
-  const { control, handleSubmit, formState } = useForm({ mode: 'onSubmit' });
+  const elementBehaviors = element?.data.nodeBehaviors;
+
+  const { control, handleSubmit, formState, reset, watch } = useForm({
+    mode: 'onSubmit',
+
+    defaultValues: elementBehaviors,
+  });
+
+  useEffect(() => {
+    if (!elementBehaviors) {
+      setOptionsValue([]);
+      return;
+    }
+    // eslint-disable-next-line no-prototype-builtins
+    const defaultOptions = behaviors?.filter(behavior => elementBehaviors.hasOwnProperty(behavior.key));
+    if (defaultOptions) setOptionsValue(defaultOptions);
+    reset(elementBehaviors);
+  }, [behaviors, elementBehaviors, hasSelectedElement, reset, watch]);
+
+  console.log(formState);
 
   // todo: add Resetting mechanism with save alert
   return (
@@ -65,6 +88,7 @@ export const ExpandedPropertyDrawer = () => {
         sx={{ height: 1, gap: 1 }}
         onSubmit={handleSubmit((data, event) => {
           event?.preventDefault();
+          console.log({ hasSelectedElement });
           if (!hasSelectedElement) return;
 
           currentReactFlow.setNodes(
@@ -87,7 +111,8 @@ export const ExpandedPropertyDrawer = () => {
           // clear
           setOptionsValue([]);
           clearPropertyDrawerStore();
-          setPropertyDrawerOpenState(false);
+          // setPropertyDrawerOpenState(false);
+          reset();
         })}
       >
         <Stack sx={{ flexDirection: 'row', alignItems: 'center' }}>

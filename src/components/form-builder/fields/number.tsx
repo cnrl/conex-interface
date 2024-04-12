@@ -1,38 +1,23 @@
 import { NumberInputProps } from '@mui/base/Unstable_NumberInput';
-import { Divider, InputAdornment, TextField } from '@mui/material';
+import { Divider, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import { Fragment, forwardRef } from 'react';
-import { Controller, ControllerProps, ControllerRenderProps, FieldValues } from 'react-hook-form';
+import { Controller, ControllerProps, ControllerRenderProps, FieldError, FieldValues } from 'react-hook-form';
 import { validators } from './number.helpers';
 
-// const NumberInner = forwardRef(function CustomNumberInput(
-//   props: ControllerRenderProps<any, any>,
-//   ref: React.ForwardedRef<HTMLDivElement>,
-// ) {
-//   return (
-//     <BaseNumberInput
-//       slotProps={{
-//         incrementButton: { children: <span className="arrow">▴</span> },
-//         decrementButton: { children: <span className="arrow">▾</span> },
-//       }}
-//       {...props}
-//       onChange={(_event, val) => props.onChange(val)}
-//       ref={ref}
-//     />
-//   );
-// });
-
 type TKinds = { kind: 'int' | 'float' };
+type TError = { error?: FieldError };
 
 const NumberInner = forwardRef(function CustomNumberInput(
-  { kind, onChange, ...props }: ControllerRenderProps<any, any> & TKinds,
+  { kind, onChange, error, ...props }: TextFieldProps & ControllerRenderProps<any, any> & TKinds & TError,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  console.log(kind);
+  props.helperText = error?.message || props.helperText;
   return (
     <Fragment>
       <TextField
         {...props}
         ref={ref}
+        error={!!error}
         type="number"
         InputProps={{
           inputMode: 'numeric',
@@ -48,9 +33,13 @@ const NumberInner = forwardRef(function CustomNumberInput(
           const shouldByPassUpdate =
             !onChange ||
             (value && ((kind === 'int' && !validators.int(value)) || (kind === 'float' && !validators.float(value))));
+          console.log({
+            kind,
+            validate: validators.float(value),
+          });
           if (shouldByPassUpdate) return;
 
-          onChange(value);
+          onChange(value ? +value : value);
         }}
         onKeyDown={e => {
           if (kind === 'int' && e.key === '.') e.preventDefault();
@@ -75,8 +64,10 @@ export const Number = <TFields extends FieldValues>({
       control={control}
       defaultValue={defaultValue}
       name={name}
-      render={({ field, fieldState }) => <NumberInner {...field} {...props} {...fieldState} kind={kind} />}
       rules={rules}
+      render={({ field, fieldState: { error } }) => {
+        return <NumberInner {...field} {...props} error={error} kind={kind} />;
+      }}
     />
   );
 };
