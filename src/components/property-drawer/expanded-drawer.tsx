@@ -6,7 +6,6 @@ import { Button, IconButton, Stack, Typography } from '@mui/material';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import Drawer from '@mui/material/Drawer';
 import { useReactFlow } from 'reactflow';
 import { Behaviors, useBehaviors } from '../../api/conex';
 import { HASH_SLICE } from '../../constants/configs';
@@ -26,11 +25,12 @@ import { produce } from 'immer';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FormBuilder } from '../form-builder';
+import CustomDrawer from './resizable-drawer';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const DRAWER_WIDTH = 300;
+export const DRAWER_WIDTH = 300;
 export const ExpandedPropertyDrawer = () => {
   const { nodeId, edgeId } = usePropertyDrawerElementStore();
   const currentReactFlow = useReactFlow();
@@ -48,9 +48,8 @@ export const ExpandedPropertyDrawer = () => {
   const [optionsValue, setOptionsValue] = useState<Behaviors[]>([]);
   const elementBehaviors = element?.data.nodeBehaviors;
 
-  const { control, handleSubmit, formState, reset, watch } = useForm({
+  const { control, handleSubmit, reset, watch } = useForm({
     mode: 'onSubmit',
-
     defaultValues: elementBehaviors,
   });
 
@@ -65,17 +64,15 @@ export const ExpandedPropertyDrawer = () => {
     reset(elementBehaviors);
   }, [behaviors, elementBehaviors, hasSelectedElement, reset, watch]);
 
-  console.log(formState);
-
   // todo: add Resetting mechanism with save alert
   return (
-    <Drawer
+    <CustomDrawer
       anchor="right"
       open={usePropertyDrawerStore().open}
       variant="persistent"
       sx={{
-        width: DRAWER_WIDTH,
         flexShrink: 0,
+        userSelect: 'none',
         '& .MuiDrawer-paper': {
           width: DRAWER_WIDTH,
           boxSizing: 'border-box',
@@ -88,7 +85,6 @@ export const ExpandedPropertyDrawer = () => {
         sx={{ height: 1, gap: 1 }}
         onSubmit={handleSubmit((data, event) => {
           event?.preventDefault();
-          console.log({ hasSelectedElement });
           if (!hasSelectedElement) return;
 
           currentReactFlow.setNodes(
@@ -99,15 +95,10 @@ export const ExpandedPropertyDrawer = () => {
               // Todo: get name from user (always)
               // Todo: add color section so user can change ui (color picker)
               // node.data.label = '⭐️';
-              console.log({ node });
               node.data.nodeBehaviors = data;
               return draft;
             }),
           );
-          console.log('update node', nodeId);
-          console.log(currentReactFlow.getNodes().find(({ id }) => id === nodeId));
-          console.log({ formState });
-
           // clear
           setOptionsValue([]);
           clearPropertyDrawerStore();
@@ -197,10 +188,10 @@ export const ExpandedPropertyDrawer = () => {
             ))}
         </Stack>
 
-        <Button type="submit" variant="contained">
-          Update
+        <Button sx={{ width: '80%', mx: 'auto' }} type="submit" variant="contained">
+          SAVE
         </Button>
       </Stack>
-    </Drawer>
+    </CustomDrawer>
   );
 };
