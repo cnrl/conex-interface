@@ -1,0 +1,13 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.sortMembers": "always",
+    "source.fixAll": "always"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "cSpell.words": [
+    "Cmdk",
+    "conex",
+    "Excalidraw"
+  ],
+}

@@ -1,0 +1,13 @@
+/* RESET */
+.react-flow__attribution {
+  display: none;
+}
+
+/* CUSTOMIZATION */
+.validation .react-flow__handle-connecting {
+  background: #ff6060;
+}
+
+.validation .react-flow__handle-valid {
+  background: #55dd99;
+}
