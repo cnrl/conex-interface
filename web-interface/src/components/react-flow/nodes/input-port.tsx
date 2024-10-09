@@ -1,7 +1,7 @@
 import LastPageRoundedIcon from '@mui/icons-material/LastPageRounded';
 import { Stack, SvgIcon } from '@mui/material';
+import type { ReactFlowAppNode } from '@stores/types';
 import { Handle, NodeProps, Position } from '@xyflow/react';
-import type { ReactFlowAppNode } from '../../../stores/types';
 
 export const NODE_TYPE = 'i';
 export const DEFAULT_COLOR = '#7cb342';

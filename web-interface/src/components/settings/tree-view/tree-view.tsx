@@ -1,11 +1,11 @@
+import { NodeTreeView } from '@components/settings/tree-view/node-tree-view';
+import { TreeItem } from '@components/settings/tree-view/tree-item';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import DisabledByDefaultRoundedIcon from '@mui/icons-material/DisabledByDefaultRounded';
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
 import { TreeItem as MuiTreeItem } from '@mui/x-tree-view/TreeItem';
-import { NodeTreeView } from './node-tree-view';
-import { TreeItem } from './tree-item';
 
 export default function TreeView() {
   return (

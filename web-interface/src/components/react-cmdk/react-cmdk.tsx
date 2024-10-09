@@ -1,12 +1,12 @@
+import { useGetComponents } from '@api/components';
+import { shortcuts } from '@components/constants/shortcuts';
+import { useStateToggleShortcutOn } from '@hooks/use-shortcut';
 import { Typography } from '@mui/material';
+import { mainCmdk } from '@stores/app-states';
 import { produce } from 'immer';
 import { useEffect, useState } from 'react';
 import CommandPalette, { filterItems, getItemIndex } from 'react-cmdk';
 import 'react-cmdk/dist/cmdk.css';
-import { useGetComponents } from '../../api/components';
-import { useStateToggleShortcutOn } from '../../hooks/use-shortcut';
-import { mainCmdk } from '../../stores/app-states';
-import { shortcuts } from '../constants/shortcuts';
 
 type Pages = 'components' | 'projects' | 'about-us';
 

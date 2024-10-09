@@ -1,8 +1,8 @@
 import SettingsIcon from '@mui/icons-material/Settings';
 
+import { ACTIVE_COLOR_FOR_CONTROL } from '@components/constants/colors';
+import { drawer } from '@stores/app-states';
 import { ControlButton } from '@xyflow/react';
-import { drawer } from '../../../stores/app-states';
-import { ACTIVE_COLOR_FOR_CONTROL } from '../../constants/colors';
 
 // assign shortcut to close and open
 export const DrawerControl = () => {

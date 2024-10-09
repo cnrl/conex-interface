@@ -1,7 +1,7 @@
+import { createNode } from '@components/react-flow/nodes';
 import { addEdge, applyEdgeChanges, applyNodeChanges } from '@xyflow/react';
 import { produce } from 'immer';
 import { create } from 'zustand';
-import { createNode } from '../components/react-flow/nodes';
 import { ReactFlowAppStoreState } from './types';
 
 const useReactFlowStore = create<ReactFlowAppStoreState>()((set, get) => ({

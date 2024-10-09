@@ -1,4 +1,4 @@
-import { ReactFlowAppNode } from '../../../stores/types';
+import { ReactFlowAppNode } from '@stores/types';
 import * as InputPort from './input-port';
 import * as NeuronGroup from './neuron-group';
 import * as OutputPort from './output-port';

@@ -2,9 +2,9 @@ import { Background, Controls, MiniMap, ReactFlow as ReactFlowInternal } from '@
 import { useShallow } from 'zustand/react/shallow';
 
 import { Box } from '@mui/material';
+import useReactFlowStore from '@stores/react-flow';
+import type { ReactFlowAppStoreState } from '@stores/types';
 import '@xyflow/react/dist/style.css';
-import useReactFlowStore from '../../stores/react-flow';
-import type { ReactFlowAppStoreState } from '../../stores/types';
 import { CustomControls } from './custom-controls';
 import { nodeTypes } from './nodes';
 import './react-flow.css';

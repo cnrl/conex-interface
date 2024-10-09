@@ -1,8 +1,8 @@
 import { Stack } from '@mui/material';
+import useReactFlowStore from '@stores/react-flow';
+import { ReactFlowAppNode } from '@stores/types';
 import { Handle, NodeProps, NodeToolbar, Position } from '@xyflow/react';
 import { useMemo } from 'react';
-import useReactFlowStore from '../../../stores/react-flow';
-import { ReactFlowAppNode } from '../../../stores/types';
 
 export const NODE_TYPE = 'ng';
 export const DEFAULT_COLOR = '#ff0072';

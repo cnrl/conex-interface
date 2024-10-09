@@ -1,7 +1,7 @@
 import FirstPageRoundedIcon from '@mui/icons-material/FirstPageRounded';
 import { Stack, SvgIcon } from '@mui/material';
+import { ReactFlowAppNode } from '@stores/types';
 import { Handle, NodeProps, Position } from '@xyflow/react';
-import { ReactFlowAppNode } from '../../../stores/types';
 
 export const NODE_TYPE = 'o';
 export const DEFAULT_COLOR = '#f4511e';

@@ -1,7 +1,7 @@
+import { MainCommandPalette } from '@components/react-cmdk/react-cmdk';
+import { ReactFlow } from '@components/react-flow';
+import { Settings } from '@components/settings';
 import { Paper } from '@mui/material';
-import { MainCommandPalette } from './components/react-cmdk/react-cmdk';
-import { ReactFlow } from './components/react-flow';
-import { Settings } from './components/settings';
 
 export const App = () => {
   return (

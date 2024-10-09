@@ -1,6 +1,6 @@
+import { TreeItem } from '@components/settings/tree-view/tree-item';
+import useReactFlowStore from '@stores/react-flow';
 import { useShallow } from 'zustand/react/shallow';
-import useReactFlowStore from '../../../stores/react-flow';
-import { TreeItem } from './tree-item';
 
 export const NodeTreeView = () => {
   const nodes = useReactFlowStore(useShallow(state => state.nodes));

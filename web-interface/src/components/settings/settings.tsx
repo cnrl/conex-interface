@@ -1,9 +1,9 @@
-import { useStateToggleShortcutOn } from '../../hooks/use-shortcut';
-import { drawer } from '../../stores/app-states';
-import { shortcuts } from '../constants/shortcuts';
-import { DRAWER_WIDTH } from './constants';
-import ResizableDrawer from './resizable-drawer';
-import TreeView from './tree-view/tree-view';
+import { shortcuts } from '@components/constants/shortcuts';
+import { DRAWER_WIDTH } from '@components/settings/constants';
+import ResizableDrawer from '@components/settings/resizable-drawer';
+import TreeView from '@components/settings/tree-view/tree-view';
+import { useStateToggleShortcutOn } from '@hooks/use-shortcut';
+import { drawer } from '@stores/app-states';
 
 export const Settings = () => {
   useStateToggleShortcutOn(shortcuts.drawer, drawer.setOpen);
