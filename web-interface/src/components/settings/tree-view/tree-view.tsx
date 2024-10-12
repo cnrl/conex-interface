@@ -3,42 +3,28 @@ import DisabledByDefaultRoundedIcon from '@mui/icons-material/DisabledByDefaultR
 import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
 import Box from '@mui/material/Box';
 import { SimpleTreeView } from '@mui/x-tree-view/SimpleTreeView';
-import { TreeItem as MuiTreeItem } from '@mui/x-tree-view/TreeItem';
 import { NodeTreeView } from './node-tree-view';
-import { TreeItem } from './tree-item';
+import useReactFlowStore from '../../../stores/react-flow';
+import { useShallow } from 'zustand/react/shallow';
 
 export default function TreeView() {
+  const selectedNodeID = useReactFlowStore(useShallow(state => state.selectedNodeID));
   return (
     <Box sx={{ minHeight: 352, minWidth: 250 }}>
       <SimpleTreeView
+        disableSelection
         defaultExpandedItems={['grid']}
+        selectedItems={selectedNodeID}
         slots={{
           expandIcon: AddBoxIcon,
           collapseIcon: IndeterminateCheckBoxIcon,
           endIcon: DisabledByDefaultRoundedIcon,
         }}
       >
-        <MuiTreeItem itemId="grid" label="Data Grid">
-          <MuiTreeItem itemId="grid-community" label="@mui/x-data-grid" />
-          <MuiTreeItem itemId="grid-pro" label="@mui/x-data-grid-pro" />
-          <MuiTreeItem itemId="grid-premium" label="@mui/x-data-grid-premium" />
-        </MuiTreeItem>
-
-        <MuiTreeItem itemId="pickers" label="Date and Time Pickers">
-          <MuiTreeItem itemId="pickers-community" label="@mui/x-date-pickers" />
-          <MuiTreeItem itemId="pickers-pro" label="@mui/x-date-pickers-pro" />
-        </MuiTreeItem>
-        <MuiTreeItem itemId="charts" label="Charts">
-          <MuiTreeItem itemId="charts-community" label="@mui/x-charts" />
-        </MuiTreeItem>
-        <MuiTreeItem itemId="tree-view" label="Tree View">
-          <MuiTreeItem itemId="tree-view-community" label="@mui/x-tree-view" />
-        </MuiTreeItem>
         {/* TODO: setting more action must be added */}
         {/* TODO: nodes color changer must be added, beside node types */}
         {/* TODO: custom style must be added for the NODEs TreeITem  */}
         <NodeTreeView />
-        <TreeItem itemId="4" label="History" />
       </SimpleTreeView>
     </Box>
   );

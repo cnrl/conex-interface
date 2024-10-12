@@ -35,3 +35,17 @@ export const mainCmdk = {
   useStore: useMainCmdkStore,
   setOpen: setMainCmdkOpenState,
 };
+
+type InfoDrawer = { ID: string | null };
+const useInfoDrawerStore = create<InfoDrawer>(() => ({ ID: null }));
+const setInfoDrawerIDState: React.Dispatch<React.SetStateAction<string | null>> = ID => {
+  if (typeof ID === 'function') {
+    return useInfoDrawerStore.setState({ ID: ID(useInfoDrawerStore.getState().ID) });
+  }
+  useInfoDrawerStore.setState({ ID });
+};
+
+export const infoDrawer = {
+  useStore: useInfoDrawerStore,
+  setID: setInfoDrawerIDState,
+};

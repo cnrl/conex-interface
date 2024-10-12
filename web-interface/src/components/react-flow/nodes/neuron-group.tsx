@@ -2,11 +2,16 @@ import { Stack } from '@mui/material';
 import { Handle, NodeProps, NodeToolbar, Position } from '@xyflow/react';
 import { useMemo } from 'react';
 import useReactFlowStore from '../../../stores/react-flow';
-import { ReactFlowAppNode } from '../../../stores/types';
+import { ReactFlowAppNode, ReactFlowAppStoreState } from '../../../stores/types';
+import { useShallow } from 'zustand/react/shallow';
+import { drawer, infoDrawer } from '../../../stores/app-states';
+const selector = (state: ReactFlowAppStoreState) => ({
+  selectedNodeID: state.selectedNodeID,
+  setSelectedNodeID: state.setSelectedNodeID,
+});
 
 export const NODE_TYPE = 'ng';
 export const DEFAULT_COLOR = '#ff0072';
-
 export const CustomNode = ({ id, data }: NodeProps<ReactFlowAppNode>) => {
   // TODO: increase by 10
   // TODO: update relative height of the box to its node indexes
@@ -22,6 +27,7 @@ export const CustomNode = ({ id, data }: NodeProps<ReactFlowAppNode>) => {
       b: { top: 20 },
     };
   }, []);
+  const { selectedNodeID, setSelectedNodeID } = useReactFlowStore(useShallow(selector));
 
   return (
     <>
@@ -47,6 +53,12 @@ export const CustomNode = ({ id, data }: NodeProps<ReactFlowAppNode>) => {
           alignItems: 'center',
           fontSize: '0.6rem',
           color: '#fff',
+          boxShadow: selectedNodeID == id ? '10px 5px 5px gray' : null,
+        }}
+        onClick={() => setSelectedNodeID(id)}
+        onDoubleClick={() => {
+          drawer.setOpen(false);
+          infoDrawer.setID(id);
         }}
       >
         {data.label}

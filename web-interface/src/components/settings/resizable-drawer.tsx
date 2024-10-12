@@ -1,8 +1,10 @@
-import { Box, DrawerProps } from '@mui/material';
+import { alpha, Box, DrawerProps } from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import { useCallback, useState } from 'react';
+import { DRAWER_WIDTH } from './constants';
+import { treeItemClasses } from '@mui/x-tree-view/TreeItem';
 
-export const defaultDrawerWidth = 240;
+export const defaultDrawerWidth = DRAWER_WIDTH;
 const minDrawerWidth = 300;
 const maxDrawerWidth = 500;
 
@@ -15,7 +17,7 @@ export default function ResizableDrawer({ children, sx, ...props }: DrawerProps)
   };
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    const newWidth = document.body.clientWidth - e.clientX - document.body.clientLeft;
+    const newWidth = document.body.clientWidth - e.clientX - document.body.clientLeft + 20;
     if (newWidth > minDrawerWidth && newWidth < maxDrawerWidth) {
       setDrawerWidth(newWidth);
     }
@@ -24,8 +26,18 @@ export default function ResizableDrawer({ children, sx, ...props }: DrawerProps)
   return (
     <Drawer
       PaperProps={{ style: { width: drawerWidth } }}
-      sx={{ drawer: { flexShrink: 0 }, ...sx }}
       variant="permanent"
+      sx={{
+        drawer: { flexShrink: 0 },
+        overflow: 'visible',
+
+        [`& .${treeItemClasses.groupTransition}`]: {
+          marginLeft: '16px',
+          paddingLeft: '4px',
+          borderLeft: `1px dashed ${alpha('#000000', 0.4)}`,
+        },
+        ...sx,
+      }}
       {...props}
     >
       <Box

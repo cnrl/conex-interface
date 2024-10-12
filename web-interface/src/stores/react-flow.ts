@@ -30,6 +30,7 @@ const useReactFlowStore = create<ReactFlowAppStoreState>()((set, get) => ({
     { id: 'e1-2', source: '1', target: '2' },
     { id: 'e2-3', source: '2', target: '3' },
   ],
+  selectedNodeID: null,
   onNodesChange: changes => {
     set({
       nodes: applyNodeChanges(changes, get().nodes),
@@ -75,6 +76,11 @@ const useReactFlowStore = create<ReactFlowAppStoreState>()((set, get) => ({
           node.data = { ...node.data, ...data };
         }
       }),
+    });
+  },
+  setSelectedNodeID: ID => {
+    set({
+      selectedNodeID: ID,
     });
   },
 }));
